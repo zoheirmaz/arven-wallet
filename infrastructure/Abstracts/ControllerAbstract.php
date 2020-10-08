@@ -2,11 +2,11 @@
 
 namespace Infrastructure\Abstracts;
 
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Infrastructure\Enums\HeaderEnums;
-use Infrastructure\Exceptions\AuthorizationException;
 use Infrastructure\Exceptions\InternalException;
+use Infrastructure\Exceptions\AuthorizationException;
 
 abstract class ControllerAbstract extends Controller
 {
@@ -16,7 +16,7 @@ abstract class ControllerAbstract extends Controller
      * @return array|void
      * @throws \Exception
      */
-    public function __call($name, $arguments)
+    public function callAction($name, $arguments)
     {
         $this->checkMethodIsExists($name);
 
