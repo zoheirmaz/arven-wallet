@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Test;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Infrastructure\Abstracts\ControllerAbstract;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class TestController extends Controller
+class Test extends ControllerAbstract
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function test()
+    protected function test()
     {
         dd('Hello world!');
     }
