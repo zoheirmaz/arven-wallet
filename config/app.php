@@ -232,5 +232,8 @@ return [
     'infrastructure' => [
         'controller_directory_name' => 'App\Http\Controllers',
         'validation_directory_name' => 'App\Validations',
-    ]
+    ],
+    'f'=>[
+
+    ],
 ];
