@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Infrastructure\Abstracts\EntityAbstract;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -15,6 +16,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @method static find($id)
  */
 class User extends EntityAbstract implements
+    JWTSubject,
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
@@ -23,6 +25,7 @@ class User extends EntityAbstract implements
 
     public const ID = 'id';
     public const NAME = 'name';
+    public const MOBILE = 'mobile';
     public const EMAIL = 'email';
     public const PASSWORD = 'password';
     /** add other field names as const here */
@@ -36,6 +39,7 @@ class User extends EntityAbstract implements
     protected $fillable = [
         self::NAME,
         self::EMAIL,
+        self::MOBILE,
         self::PASSWORD,
     ];
 
@@ -61,4 +65,14 @@ class User extends EntityAbstract implements
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
