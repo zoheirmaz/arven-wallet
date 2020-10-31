@@ -56,6 +56,17 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'shetabit/payment' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Shetabit\\Payment\\Provider\\PaymentServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Payment' => 'Shetabit\\Payment\\Facade\\Payment',
+    ),
+  ),
   'tymon/jwt-auth' => 
   array (
     'aliases' => 
