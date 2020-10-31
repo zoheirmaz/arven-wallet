@@ -17,8 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->id();
 
             $table->text('transaction_id');
-            $table->unsignedBigInteger('gateway');
-            $table->timestamp('paid_at');
+            $table->unsignedBigInteger('gateway')->nullable();
+            $table->timestamp('paid_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
