@@ -187,7 +187,7 @@ return [
 
             'mode' => env('ZARINPAL_MODE', 'normal'), // can be normal, sandbox, zaringate
             'merchantId' => env('ZARINPAL_MERCHANT_ID', '41651565'),
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'callbackUrl' => 'http://laravel.ecotak.ir/ret',
             'description' => 'payment using zarinpal',
         ],
         'zibal' => [
