@@ -80,7 +80,7 @@ Route::post('/register', 'AuthController@register');
 /**
  * @OA\Post(
  *     path="/login",
- *     summary="Post to URL",
+ *     summary="Login a user",
  *     tags={"User"},
  *     @OA\RequestBody(
  *          request="Pet",
