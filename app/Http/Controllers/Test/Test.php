@@ -33,7 +33,7 @@ class Test
 
     public function returnPayment(Request $request)
     {
-        $transactionId = $request->get('transaction_id');
+        $transactionId = $request->get('Authority');
 
         $transaction = Transaction::query()->where(
             Transaction::TRANSACTION_ID,
@@ -51,12 +51,14 @@ class Test
             $transaction->{Transaction::STATUS} = TransactionStatusEnums::PAID;
             $transaction->{Transaction::REFERENCE_ID} = $receipt->getReferenceId();
 
-            dd($receipt->getDriver());
+            print_r($receipt->getDriver());
         } catch (InvalidPaymentException $exception) {
             $transaction->{Transaction::STATUS} = TransactionStatusEnums::FAILED;
             $transaction->{Transaction::GATEWAY_STATUS} = $exception->getCode();
 
-            dd($exception->getCode());
+            print_r($exception->getCode());
         }
+
+        $transaction->save();
     }
 }
