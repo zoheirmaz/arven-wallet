@@ -27,6 +27,6 @@ if (!function_exists('pay')) {
                     Transaction::PAYMENT_ID => $payment->{PaymentEntity::ID},
                 ]);
             }
-        )->pay()->toJson();
+        )->pay()->render();
     }
 }
