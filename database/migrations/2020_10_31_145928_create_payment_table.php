@@ -18,14 +18,12 @@ class CreatePaymentTable extends Migration
 
             $table->unsignedBigInteger('entity_type');
             $table->unsignedBigInteger('entity_id');
-            $table->unsignedBigInteger('transaction_id');
+            $table->timestamp('paid_At')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
-        });
+            $table->unsignedBigInteger('created_by')->nullable();
 
-        Schema::table('payment', function (Blueprint $table) {
-            $table->foreign('transaction_id')->references('id')->on('transactions');
         });
     }
 

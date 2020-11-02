@@ -16,9 +16,13 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
 
-            $table->text('transaction_id');
+            $table->unsignedBigInteger('payment_id');
+            $table->integer('status');
             $table->unsignedBigInteger('gateway')->nullable();
+            $table->string('transaction_id');
+            $table->text('reference_id')->nullable();
             $table->timestamp('paid_at')->nullable();
+            $table->integer('gateway_status')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +32,7 @@ class CreateTransactionsTable extends Migration
         Schema::table('transactions', function (Blueprint $table) {
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('gateway')->references('id')->on('enumerations');
+            $table->foreign('payment_id')->references('id')->on('payment');
         });
     }
 
