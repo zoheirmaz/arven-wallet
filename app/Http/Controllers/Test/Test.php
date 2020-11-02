@@ -33,7 +33,7 @@ class Test
 
     public function returnPayment(Request $request)
     {
-        $transactionId = $request->get('transaction_id');
+        $transactionId = $request->get('Authority');
 
         $transaction = Transaction::query()->where(
             Transaction::TRANSACTION_ID,
