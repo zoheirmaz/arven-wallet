@@ -2,11 +2,18 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Infrastructure\Enums\HeaderEnums;
+use Infrastructure\Traits\ExceptionTrait;
+use Infrastructure\Exceptions\ValidatorException;
+use Infrastructure\Exceptions\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Infrastructure\Exceptions\AuthorizationException as AuthorizeException;
 
 class Handler extends ExceptionHandler
 {
+    use ExceptionTrait;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -29,10 +36,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param \Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Throwable
      */
     public function report(Throwable $exception)
     {
@@ -42,14 +49,30 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        if ($request->hasHeader(HeaderEnums::X_LOG_EXCEPTION)) {
+            return $this->logHeaderRender($exception);
+        }
+
+        if ($exception instanceof ValidatorException) {
+            return $this->validationRender($exception);
+        }
+
+        if ($exception instanceof AuthorizeException) {
+            return $this->authorizationRender($exception);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return $this->authenticationRender($exception);
+        }
+
+        return $this->internalRender($request, $exception);
     }
 }

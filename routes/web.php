@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'Test\Test@test');
+
+Route::get('/pay', 'Test\Test@payment');
+Route::get('/ret', 'Test\Test@returnPayment');
