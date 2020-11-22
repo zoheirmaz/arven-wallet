@@ -12,6 +12,8 @@ use Infrastructure\Exceptions\AuthorizationException;
 
 abstract class ControllerAbstract extends Controller
 {
+    protected $repository;
+
     /**
      * @param $name
      * @param $arguments
