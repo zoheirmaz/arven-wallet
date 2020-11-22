@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="L5 OpenApi",
- *      description="L5 Swagger OpenApi description",
+ *      title="Wallet",
  *      @OA\Contact(
  *          email="zoheirmaz.zm@gmail.com"
  *      ),
@@ -30,75 +29,28 @@ use Illuminate\Support\Facades\Route;
  */
 
 
-/**
- * @OA\Get(
- *     path="/user",
- *     summary="Get current user",
- *     tags={"User"},
- *     @OA\Response(response="200", description="register sucessful"),
- *     @OA\Response(response="401", description="unauthorized"),
- *     security={
- *         {
- *             "bearer": {}
- *         }
- *     },
- * )
- */
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('/credit')->group(function () {
+    /**
+     * @OA\Post(
+     *     path="/credit/charge",
+     *     summary="Charge user credit",
+     *     tags={"Credit"},
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="amount",
+     *                  type="integer",
+     *              ),
+     *              @OA\Property(
+     *                  property="mobile",
+     *                  type="string",
+     *              ),
+     *          )
+     *     ),
+     *     @OA\Response(response="200", description="register sucessful"),
+     *     @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::post('/charge', 'CreditController@charge');
 });
-
-/**
- * @OA\Post(
- *     path="/register",
- *     summary="Register a user",
- *     tags={"User"},
- *     @OA\RequestBody(
- *          description="Pass name, mobile, password",
- *          required=true,
- *          @OA\JsonContent(
- *              @OA\Property(
- *                  property="name",
- *                  type="string",
- *              ),
- *              @OA\Property(
- *                  property="mobile",
- *                  type="string",
- *              ),
- *              @OA\Property(
- *                  property="password",
- *                  type="string",
- *              )
- *          )
- *     ),
- *     @OA\Response(response="200", description="register sucessful"),
- *     @OA\Response(response="401", description="unauthorized")
- * )
- */
-Route::post('/register', 'AuthController@register');
-
-/**
- * @OA\Post(
- *     path="/login",
- *     summary="Login a user",
- *     tags={"User"},
- *     @OA\RequestBody(
- *          request="Pet",
- *          description="Pet object that needs to be added to the store",
- *          required=true,
- *          @OA\JsonContent(
- *              @OA\Property(
- *                  property="mobile",
- *                  type="string",
- *              ),
- *              @OA\Property(
- *                  property="password",
- *                  type="string",
- *              )
- *          )
- *     ),
- *     @OA\Response(response="200", description="login sucessful"),
- *     @OA\Response(response="401", description="unauthorized")
- * )
- */
-Route::post('/login', 'AuthController@login');
