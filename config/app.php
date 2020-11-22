@@ -232,6 +232,7 @@ return [
     'infrastructure' => [
         'controller_directory_name' => 'App\Http\Controllers',
         'validation_directory_name' => 'App\Validations',
+        'policy_directory_name' => 'App\Policies',
     ],
     'f'=>[
 

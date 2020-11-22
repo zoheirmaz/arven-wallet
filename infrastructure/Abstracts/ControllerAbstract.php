@@ -5,7 +5,9 @@ namespace Infrastructure\Abstracts;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\Enums\HeaderEnums;
+use Illuminate\Support\Facades\Validator;
 use Infrastructure\Exceptions\InternalException;
+use Infrastructure\Exceptions\ValidatorException;
 use Infrastructure\Exceptions\AuthorizationException;
 
 abstract class ControllerAbstract extends Controller
@@ -54,7 +56,8 @@ abstract class ControllerAbstract extends Controller
      */
     private function checkValidation($methodName, $arguments)
     {
-        $controllerPath = get_class($this);
+        $controllerPath = substr(get_class($this), 0, -10);
+
         $validationPath = str_replace(
             config('app.infrastructure.controller_directory_name'),
             config('app.infrastructure.validation_directory_name'),
@@ -69,11 +72,15 @@ abstract class ControllerAbstract extends Controller
 
         $validationClass = new $validationPath();
 
-        $this->validate(
-            $arguments[0],
+        $validator = Validator::make(
+            request()->all(),
             $validationClass->rules(),
             $validationClass->messages()
         );
+
+        if ($validator->fails()) {
+            throw new ValidatorException(collect($validator->errors()));
+        }
     }
 
     /**
@@ -84,7 +91,7 @@ abstract class ControllerAbstract extends Controller
      */
     private function checkPolicy($methodName, $arguments)
     {
-        $controllerPath = get_class($this);
+        $controllerPath = substr(get_class($this), 0, -10);
         $policyPath = str_replace(
             config('app.infrastructure.controller_directory_name'),
             config('app.infrastructure.policy_directory_name'),
