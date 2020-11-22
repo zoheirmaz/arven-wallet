@@ -141,6 +141,7 @@ return [
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
@@ -233,8 +234,5 @@ return [
         'controller_directory_name' => 'App\Http\Controllers',
         'validation_directory_name' => 'App\Validations',
         'policy_directory_name' => 'App\Policies',
-    ],
-    'f'=>[
-
     ],
 ];
