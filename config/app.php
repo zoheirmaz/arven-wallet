@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fa',
 
     /*
     |--------------------------------------------------------------------------
@@ -141,6 +141,7 @@ return [
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
@@ -232,8 +233,6 @@ return [
     'infrastructure' => [
         'controller_directory_name' => 'App\Http\Controllers',
         'validation_directory_name' => 'App\Validations',
-    ],
-    'f'=>[
-
+        'policy_directory_name' => 'App\Policies',
     ],
 ];

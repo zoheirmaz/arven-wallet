@@ -1,8 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "L5 OpenApi",
-        "description": "L5 Swagger OpenApi description",
+        "title": "Wallet",
         "contact": {
             "email": "zoheirmaz.zm@gmail.com"
         },
@@ -14,47 +13,22 @@
         }
     ],
     "paths": {
-        "/user": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Get current user",
-                "responses": {
-                    "200": {
-                        "description": "register sucessful"
-                    },
-                    "401": {
-                        "description": "unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/register": {
+        "/credit/charge": {
             "post": {
                 "tags": [
-                    "User"
+                    "Credit"
                 ],
-                "summary": "Register a user",
+                "summary": "Charge user credit",
                 "requestBody": {
-                    "description": "Pass name, mobile, password",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "name": {
-                                        "type": "string"
+                                    "amount": {
+                                        "type": "integer"
                                     },
                                     "mobile": {
-                                        "type": "string"
-                                    },
-                                    "password": {
                                         "type": "string"
                                     }
                                 },
@@ -66,42 +40,6 @@
                 "responses": {
                     "200": {
                         "description": "register sucessful"
-                    },
-                    "401": {
-                        "description": "unauthorized"
-                    }
-                }
-            }
-        },
-        "/login": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Post to URL",
-                "requestBody": {
-                    "request": "Pet",
-                    "description": "Pet object that needs to be added to the store",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "mobile": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "login sucessful"
                     },
                     "401": {
                         "description": "unauthorized"
