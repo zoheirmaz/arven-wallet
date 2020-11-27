@@ -44,4 +44,19 @@ class CreditRepository implements CreditRepositoryInterface
             Credit::DELETED_AT
         )->sum(Credit::REMINDED_AMOUNT);
     }
+
+    public function getUserCredits($mobile)
+    {
+        $query = Credit::query()->where(
+            Credit::USER_ID,
+            $mobile
+        )->whereNull(
+            Credit::DELETED_AT
+        );
+
+        return [
+            'results' => $query->get(),
+            'totalCount' => $query->count()
+        ];
+    }
 }

@@ -9,4 +9,6 @@ interface CreditRepositoryInterface
     public function getCreditByCoupon($input);
 
     public function getUserCreditAmount($mobile);
+
+    public function getUserCredits($mobile);
 }
