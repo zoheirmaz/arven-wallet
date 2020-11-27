@@ -20,4 +20,9 @@ class Credit extends PolicyAbstract
     {
         return true;
     }
+
+    public function getUserCredits()
+    {
+        return true;
+    }
 }

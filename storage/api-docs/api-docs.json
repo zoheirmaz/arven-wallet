@@ -74,6 +74,33 @@
                 }
             }
         },
+        "/credit/list": {
+            "get": {
+                "tags": [
+                    "Credit"
+                ],
+                "summary": "Get user credits list",
+                "parameters": [
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
         "/coupon/apply": {
             "post": {
                 "tags": [

@@ -73,6 +73,26 @@ Route::prefix('/credit')->group(function () {
      * )
      */
     Route::get('/amount', 'CreditController@getUserCreditAmount');
+
+    /**
+     * @OA\Get(
+     *      path="/credit/list",
+     *      summary="Get user credits list",
+     *      tags={"Credit"},
+     *     @OA\Parameter(
+     *          name="mobile",
+     *          description="User mobile",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(response="200", description="requst is sucessful"),
+     *      @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::get('/list', 'CreditController@getUserCredits');
 });
 
 Route::prefix('/coupon')->group(function () {
