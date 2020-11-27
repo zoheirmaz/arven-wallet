@@ -54,3 +54,34 @@ Route::prefix('/credit')->group(function () {
      */
     Route::post('/charge', 'CreditController@charge');
 });
+
+Route::prefix('/coupon')->group(function () {
+    /**
+     * @OA\Post(
+     *      path="/coupon/apply",
+     *      summary="apply a coupon and get credit",
+     *      tags={"Coupon"},
+     *     @OA\Parameter(
+     *          name="coupon_id",
+     *          description="Coupon id",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="mobile",
+     *          description="User mobile",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(response="200", description="requst is sucessful"),
+     *      @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::post('/apply', 'CreditController@getCreditByCoupon');
+});

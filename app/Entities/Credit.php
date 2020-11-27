@@ -42,6 +42,12 @@ class Credit extends EntityAbstract
         self::CREATED_BY
     ];
 
+    protected $attributes = [
+        self::REFERENCE_TYPE => 0,
+        self::REFERENCE_ID => 0,
+        self::USED_COUNT => 0,
+    ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *

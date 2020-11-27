@@ -46,6 +46,42 @@
                     }
                 }
             }
+        },
+        "/coupon/apply": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "apply a coupon and get credit",
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "query",
+                        "description": "Coupon id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
         }
     },
     "components": {
