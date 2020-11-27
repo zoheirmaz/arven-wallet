@@ -25,4 +25,16 @@ class CreditController extends ControllerAbstract
 
         return new CreditResource($charge);
     }
+
+    protected function getCreditByCoupon(Request $request)
+    {
+        $data = [
+            'coupon_id' => $request->input('coupon_id'),
+            'mobile' => $request->input('mobile'),
+        ];
+
+        $credit = $this->repository->getCreditByCoupon($data);
+
+        return new CreditResource($credit);
+    }
 }
