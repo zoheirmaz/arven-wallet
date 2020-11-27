@@ -37,4 +37,11 @@ class CreditController extends ControllerAbstract
 
         return new CreditResource($credit);
     }
+
+    protected function getUserCreditAmount(Request $request)
+    {
+        $amount = $this->repository->getUserCreditAmount($request->input('mobile'));
+
+        return ['amount' => $amount];
+    }
 }
