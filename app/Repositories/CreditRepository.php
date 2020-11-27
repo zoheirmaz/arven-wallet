@@ -24,4 +24,14 @@ class CreditRepository implements CreditRepositoryInterface
             Credit::CREATED_BY => $data['mobile'],
         ]);
     }
+
+    public function getCreditByCoupon($input)
+    {
+        $credit = coupon_request_service(
+            $input['mobile'],
+            $input['coupon_id']
+        )->outputCredit($input);
+
+        return Credit::create($credit);
+    }
 }
