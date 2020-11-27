@@ -34,4 +34,14 @@ class CreditRepository implements CreditRepositoryInterface
 
         return Credit::create($credit);
     }
+
+    public function getUserCreditAmount($mobile)
+    {
+        return Credit::query()->where(
+            Credit::USER_ID,
+            $mobile
+        )->whereNull(
+            Credit::DELETED_AT
+        )->sum(Credit::REMINDED_AMOUNT);
+    }
 }
