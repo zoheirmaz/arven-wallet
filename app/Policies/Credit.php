@@ -10,4 +10,19 @@ class Credit extends PolicyAbstract
     {
         return true;
     }
+
+    public function getCreditByCoupon()
+    {
+        return true;
+    }
+
+    public function getUserCreditAmount()
+    {
+        return true;
+    }
+
+    public function getUserCredits()
+    {
+        return true;
+    }
 }

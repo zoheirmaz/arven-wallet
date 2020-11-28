@@ -46,6 +46,96 @@
                     }
                 }
             }
+        },
+        "/credit/amount": {
+            "get": {
+                "tags": [
+                    "Credit"
+                ],
+                "summary": "Get user credits amount",
+                "parameters": [
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/credit/list": {
+            "get": {
+                "tags": [
+                    "Credit"
+                ],
+                "summary": "Get user credits list",
+                "parameters": [
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/apply": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "apply a coupon and get credit",
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "query",
+                        "description": "Coupon id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
         }
     },
     "components": {

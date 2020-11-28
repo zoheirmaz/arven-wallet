@@ -24,4 +24,39 @@ class CreditRepository implements CreditRepositoryInterface
             Credit::CREATED_BY => $data['mobile'],
         ]);
     }
+
+    public function getCreditByCoupon($input)
+    {
+        $credit = coupon_request_service(
+            $input['mobile'],
+            $input['coupon_id']
+        )->outputCredit($input);
+
+        return Credit::create($credit);
+    }
+
+    public function getUserCreditAmount($mobile)
+    {
+        return Credit::query()->where(
+            Credit::USER_ID,
+            $mobile
+        )->whereNull(
+            Credit::DELETED_AT
+        )->sum(Credit::REMINDED_AMOUNT);
+    }
+
+    public function getUserCredits($mobile)
+    {
+        $query = Credit::query()->where(
+            Credit::USER_ID,
+            $mobile
+        )->whereNull(
+            Credit::DELETED_AT
+        );
+
+        return [
+            'results' => $query->get(),
+            'totalCount' => $query->count()
+        ];
+    }
 }

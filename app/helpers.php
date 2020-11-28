@@ -8,6 +8,7 @@ use Shetabit\Multipay\Abstracts\Driver;
 use App\Entities\Payment as PaymentEntity;
 use Infrastructure\Enums\PaymentGatewaysEnums;
 use Infrastructure\Enums\TransactionStatusEnums;
+use Infrastructure\Interfaces\Services as ServicesInterfaces;
 
 if (!function_exists('pay')) {
     function pay(PaymentEntity $payment)
@@ -28,5 +29,20 @@ if (!function_exists('pay')) {
                 ]);
             }
         )->pay()->render();
+    }
+}
+
+if (!function_exists('coupon_request_service')) {
+    /**
+     * @param $mobile
+     * @param $coupon_id
+     * @return ServicesInterfaces\CouponServiceInterface
+     */
+    function coupon_request_service($mobile, $coupon_id)
+    {
+        return app(ServicesInterfaces\CouponServiceInterface::class, [
+            'mobile' => $mobile,
+            'coupon_id' => $coupon_id
+        ]);
     }
 }
